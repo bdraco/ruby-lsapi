@@ -1,0 +1,90 @@
+
+lsapi - LSAPI extension for Ruby
+================================
+
+INSTALL
+-------
+
+  $ ruby setup.rb config
+  $ ruby setup.rb setup
+  # ruby setup.rb install
+
+USAGE
+-----
+
+General CGI scripts
+^^^^^^^^^^^^^^^^^^^
+The most efficient way to use LSAPI interface is to modify your CGI scripts. 
+You need to add the following code to your CGI scripts:
+
+  require 'lsapi'
+  
+  while LSAPI.accept != nil
+
+     <your CGI script>
+     ...
+
+  end
+
+There is no need to change the way that how CGI environment variables 
+are being accessed in your scripts.
+
+You can find some examples under examples/ folder.
+
+
+Ruby Script Runner
+^^^^^^^^^^^^^^^^^^
+If you don't want to change your existing Ruby CGI code, you can use our 
+Ruby script runner under scripts/ folder. You need to configure 
+lsruby_runner.rb as a LSAPI application, then add a script handler 
+for "rb" suffix.
+
+
+
+Rack/Rails Runner
+^^^^^^^^^^^^^^^^^
+
+With Ruby LSAPI, we proudly provide a optimum platform for Rack/Rails 
+application deployment. Ruby LSAPI has the following advantages over 
+other solutions.
+
+  * Easy configuration, deploy a Rails application only take a few clicks
+    with our Rails easy configuration
+  * Fast startup, the expensive Rails framework initialization only takes
+    place once when multiple processes need to be started
+  * Resource efficience, ruby processes can be started on demand, idle
+    process will be stop.
+  * ruby-lsapi 4.1 release added native support for RewindableInput interface
+    required by RACK middleware, delivering superior performance than all 
+    other Rack handler implementations.
+  * Rack LSWS handler in LSWS 4.2.2 release also support Sendfile middleware
+    intercepts to take advantage of LiteSpeed web server’s optimized file 
+    delivery code.
+    
+To use LSAPI with Rack and Ruby on Rails, please check out our toturial
+http://www.litespeedtech.com/support/wiki/doku.php
+
+Since LSWS 4.2.2 release, only Rails 3.0+ application are officially 
+supported via Rack middleware along with other frameworks using RACK 
+middleware.
+
+The latest RackRunner.rb is distributed along with each LSWS release,
+located at lsws/fcgi-bin/RackRunner.rb
+
+License
+-------
+
+LSAPI library code is under BSD license
+
+LSAPI ruby extension code is under Ruby license
+
+* ((<URL:http://www.ruby-lang.org/ja/LICENSE.txt>)) (Japanese)
+* ((<URL:http://www.ruby-lang.org/en/LICENSE.txt>)) (English)
+
+
+Copyright
+---------
+
+Copyright (C) 2006 Lite Speed Technologies Inc.
+
+
